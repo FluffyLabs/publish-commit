@@ -1,0 +1,36 @@
+{
+  "name": "publish-commit",
+  "version": "0.0.1",
+  "description": "A tool to publish your commit history to a blockhcain.",
+  "homepage": "https://github.com/FluffyLabs/publish-commit#readme",
+  "bugs": {
+    "url": "https://github.com/FluffyLabs/publish-commit/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FluffyLabs/publish-commit.git"
+  },
+  "engines": {
+    "node": ">=22",
+    "npm": ">=10"
+  },
+  "license": "MPL-2.0",
+  "author": "Fluffy Labs",
+  "type": "commonjs",
+  "main": "index.ts",
+  "scripts": {
+    "start": "tsx index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "papi add ksm -n ksmcc3_asset_hub && papi"
+  },
+  "dependencies": {
+    "@octokit/webhooks-types": "^7.6.1",
+    "@polkadot-api/descriptors": "file:.papi/descriptors",
+    "@polkadot/util-crypto": "^13.5.2",
+    "polkadot-api": "^1.14.0"
+  },
+  "devDependencies": {
+    "@tsconfig/node20": "^20.1.6",
+    "tsx": "^4.20.3"
+  }
+}
