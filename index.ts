@@ -4,7 +4,7 @@ import { ksm } from "@polkadot-api/descriptors";
 import { createClient, Binary } from "polkadot-api";
 import { getWsProvider } from "polkadot-api/ws-provider/web";
 import { getPolkadotSigner } from "polkadot-api/signer";
-import { sr25519Sign, sr25519PairFromSeed, cryptoWaitReady } from "@polkadot/util-crypto";;
+import { sr25519Sign, sr25519PairFromSeed, cryptoWaitReady } from "@polkadot/util-crypto";
 
 type TransactionPayload = [
   string, // repo name
@@ -13,7 +13,6 @@ type TransactionPayload = [
   string[], // commit ids
   string | null, // previous block hash
 ];
-const COMMIT_IDS_INDEX = 3;
 
 interface LogEntry {
   payload: TransactionPayload;
@@ -22,6 +21,7 @@ interface LogEntry {
   failed: boolean;
 }
 
+const COMMIT_IDS_INDEX = 3;
 const LOG_FILENAME = process.env.LOG_FILENAME as string;
 const AUTH = process.env.COMMIT_KEY_SECRET as string;
 
