@@ -1,10 +1,10 @@
 import * as fs from "node:fs/promises";
 import type { PushEvent } from "@octokit/webhooks-types";
 import { ksm } from "@polkadot-api/descriptors";
-import { createClient, Binary } from "polkadot-api";
-import { getWsProvider } from "polkadot-api/ws-provider/web";
+import { cryptoWaitReady, sr25519PairFromSeed, sr25519Sign } from "@polkadot/util-crypto";
+import { Binary, createClient } from "polkadot-api";
 import { getPolkadotSigner } from "polkadot-api/signer";
-import { sr25519Sign, sr25519PairFromSeed, cryptoWaitReady } from "@polkadot/util-crypto";
+import { getWsProvider } from "polkadot-api/ws-provider/web";
 
 type TransactionPayload = [
   string, // repo name
