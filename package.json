@@ -18,6 +18,7 @@
   "author": "Fluffy Labs",
   "type": "commonjs",
   "main": "index.ts",
+  "bin": "index.ts",
   "scripts": {
     "qa": "biome ci",
     "qa-fix": "npm run format; npm run lint",
