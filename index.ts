@@ -1,5 +1,3 @@
-#!/usr/bin/env npx tsx
-
 import * as fs from "node:fs/promises";
 import type { PushEvent } from "@octokit/webhooks-types";
 import { ksm } from "@polkadot-api/descriptors";
