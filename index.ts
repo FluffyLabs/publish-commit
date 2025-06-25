@@ -1,7 +1,7 @@
 import * as fs from "node:fs/promises";
 import type { PushEvent } from "@octokit/webhooks-types";
 import { ksm } from "@polkadot-api/descriptors";
-import { cryptoWaitReady, sr25519PairFromSeed, sr25519Sign } from "@polkadot/util-crypto";
+import { cryptoWaitReady, sr25519PairFromSeed, keyExtractSuri, mnemonicToMiniSecret, keyFromPath, sr25519Sign } from "@polkadot/util-crypto";
 import { Binary, createClient } from "polkadot-api";
 import { getPolkadotSigner } from "polkadot-api/signer";
 import { getWsProvider } from "polkadot-api/ws-provider/web";
@@ -116,7 +116,8 @@ async function main() {
 
   const client = createClient(getWsProvider("wss://kusama-asset-hub-rpc.polkadot.io"));
   const api = client.getTypedApi(ksm);
-  const keypair = sr25519PairFromSeed(AUTH);
+  const { phrase, path, password } = keyExtractSuri(AUTH);
+  const keypair = keyFromPath(sr25519PairFromSeed(mnemonicToMiniSecret(phrase, password)), path, 'sr25519');
   const signer = getPolkadotSigner(keypair.publicKey, "Sr25519", (input) => sr25519Sign(input, keypair));
 
   const remark = api.tx.System.remark({ remark: Binary.fromText(JSON.stringify(transactionPayload)) });
